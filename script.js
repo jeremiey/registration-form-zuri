@@ -1,38 +1,36 @@
 const form = document.getElementById('form');
-const fname = document.getElementById('first-name');
-const lname = document.getElementById('last-name');
+const firstName = document.getElementById('first-name');
+const lastName = document.getElementById('last-name');
 const email = document.getElementById('email');
-const pass = document.getElementById('password');
+const password = document.getElementById('password');
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-
-  checkInputs();
+  checkInput();
 });
 
-function checkInputs() {
-  // Get Value
-  const fnameValue = fname.value.trim();
-  const lnameValue = lname.value.trim();
+const checkInput = () => {
+  const firstNameValue = firstName.value.trim();
+  const lastNameValue = lastName.value.trim();
   const emailValue = email.value.trim();
-  const passValue = pass.value.trim();
+  const passwordValue = password.value.trim();
 
   if (
-    fnameValue === '' ||
-    lname.value === '' ||
+    firstNameValue === '' ||
+    lastName.value === '' ||
     emailValue === '' ||
-    passValue === ''
+    passwordValue === ''
   ) {
-    if (fnameValue === '') {
-      setError(fname, 'First Name cannot be empty');
+    if (firstNameValue === '') {
+      setError(firstName, 'First Name cannot be empty');
     } else {
-      setSuccess(fname);
+      setSuccess(firstName);
     }
 
-    if (lnameValue === '') {
-      setError(lname, 'Last Name cannot be empty');
+    if (lastNameValue === '') {
+      setError(lastName, 'Last Name cannot be empty');
     } else {
-      setSuccess(lname);
+      setSuccess(lastName);
     }
 
     if (emailValue === '') {
@@ -41,27 +39,25 @@ function checkInputs() {
       setSuccess(email);
     }
 
-    if (passValue === '') {
-      setError(pass, 'Password field cannot be empty');
+    if (passwordValue === '') {
+      setError(password, 'Password field cannot be empty');
     } else {
-      setSuccess(pass);
+      setSuccess(password);
     }
   } else {
     location.reload();
   }
 }
 
-function setError(input, message) {
+const setError = (input, message) => {
   const formControl = input.parentElement;
   const small = formControl.querySelector('small');
-
   small.innerText = message;
-
   formControl.className = 'form-control error';
   formControl.style.marginBottom = '1.5rem';
 }
 
-function setSuccess(input, message) {
+const setSuccess = (input, message) => {
   const formControl = input.parentElement;
   formControl.className = 'form-control success';
 }
